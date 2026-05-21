@@ -22,7 +22,6 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        // ⚠️ ATTENTION : il faut une library en base avec ID = 1
         Long libraryId = 1L;
 
         Book book1 = new Book("Hesias");
