@@ -23,20 +23,20 @@ public class Main implements CommandLineRunner {
     public void run(String... args) {
 
         Book book1 = new Book("Hesias");
-        Book savedBook1 = bookService.saveBook(book1);
+        Book savedBook1 = bookService.save(book1);
 
         Book book2 = new Book("Hesias2");
-        Book savedBook2 = bookService.saveBook(book2);
+        Book savedBook2 = bookService.save(book2);
 
         System.out.println("Tous les livres :");
-        bookService.getAllBooks().forEach(book ->
+        bookService.findAll().forEach(book ->
                 System.out.println("ID: " + book.getId() + " | Title: " + book.getTitle())
         );
 
-        bookService.deleteBook(savedBook2.getId());
+        bookService.deleteById(savedBook2.getId());
 
         System.out.println("Après suppression :");
-        bookService.getAllBooks().forEach(book ->
+        bookService.findAll().forEach(book ->
                 System.out.println("ID: " + book.getId() + " | Title: " + book.getTitle())
         );
     }

@@ -1,5 +1,9 @@
 package com.hesias.service;
 
+import java.util.Optional;
+import com.hesias.entity.Library;
+import com.hesias.repository.LibraryRepository;
+
 import com.hesias.entity.Book;
 import com.hesias.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -15,15 +19,16 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book saveBook(Book book) {
-        return bookRepository.save(book);
-    }
-
-    public List<Book> getAllBooks() {
+    public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
-    public void deleteBook(Long id) {
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
 }
+
