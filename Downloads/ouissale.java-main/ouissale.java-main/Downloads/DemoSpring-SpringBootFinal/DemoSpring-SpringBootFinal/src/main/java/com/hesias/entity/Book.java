@@ -10,6 +10,17 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
     @Column(name = "title")
     private String title;
 

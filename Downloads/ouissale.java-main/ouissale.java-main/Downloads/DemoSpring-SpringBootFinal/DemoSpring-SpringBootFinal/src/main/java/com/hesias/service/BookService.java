@@ -1,11 +1,9 @@
 package com.hesias.service;
 
-import java.util.Optional;
-import com.hesias.entity.Library;
-import com.hesias.repository.LibraryRepository;
-
 import com.hesias.entity.Book;
+import com.hesias.entity.Library;
 import com.hesias.repository.BookRepository;
+import com.hesias.repository.LibraryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,21 +12,26 @@ import java.util.List;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final LibraryRepository libraryRepository;
 
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, LibraryRepository libraryRepository) {
         this.bookRepository = bookRepository;
+        this.libraryRepository = libraryRepository;
     }
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
-    }
+    public Book addBookToLibrary(Long libraryId, Book book) {
+        Library library = libraryRepository.findById(libraryId)
+                .orElseThrow(() -> new RuntimeException("Library not found"));
 
-    public Book save(Book book) {
+        book.setLibrary(library);
+
         return bookRepository.save(book);
     }
 
-    public void deleteById(Long id) {
-        bookRepository.deleteById(id);
+    public List<Book> getBooksByLibrary(Long libraryId) {
+        Library library = libraryRepository.findById(libraryId)
+                .orElseThrow(() -> new RuntimeException("Library not found"));
+
+        return library.getBooks();
     }
 }
-

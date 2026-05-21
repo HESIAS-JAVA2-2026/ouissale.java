@@ -22,21 +22,17 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+        Long libraryId = 1L;
+
         Book book1 = new Book("Hesias");
-        Book savedBook1 = bookService.save(book1);
-
         Book book2 = new Book("Hesias2");
-        Book savedBook2 = bookService.save(book2);
 
-        System.out.println("Tous les livres :");
-        bookService.findAll().forEach(book ->
-                System.out.println("ID: " + book.getId() + " | Title: " + book.getTitle())
-        );
+        bookService.addBookToLibrary(libraryId, book1);
+        bookService.addBookToLibrary(libraryId, book2);
 
-        bookService.deleteById(savedBook2.getId());
+        System.out.println("Livres de la bibliothèque :");
 
-        System.out.println("Après suppression :");
-        bookService.findAll().forEach(book ->
+        bookService.getBooksByLibrary(libraryId).forEach(book ->
                 System.out.println("ID: " + book.getId() + " | Title: " + book.getTitle())
         );
     }

@@ -16,23 +16,13 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
-    public List<Book> getAllBooks() {
-        return bookService.findAll();
+    @GetMapping("/library/{libraryId}")
+    public List<Book> getBooksByLibrary(@PathVariable Long libraryId) {
+        return bookService.getBooksByLibrary(libraryId);
     }
 
-    @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.save(book);
+    @PostMapping("/library/{libraryId}")
+    public Book addBookToLibrary(@PathVariable Long libraryId, @RequestBody Book book) {
+        return bookService.addBookToLibrary(libraryId, book);
     }
-    @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
-        book.setId(id);
-        return bookService.save(book);
-    }
-    @DeleteMapping("/{id}")
-    public void deleteBook(@PathVariable Long id) {
-        bookService.deleteById(id);
-    }
-
 }
