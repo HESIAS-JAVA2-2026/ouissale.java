@@ -24,16 +24,23 @@ public class Main implements CommandLineRunner {
 
         Long libraryId = 1L;
 
-        Book book1 = new Book("Hesias");
-        Book book2 = new Book("Hesias2");
+        try {
+            Book book1 = new Book("Hesias");
+            Book book2 = new Book("Hesias2");
 
-        bookService.addBookToLibrary(libraryId, book1);
-        bookService.addBookToLibrary(libraryId, book2);
+            bookService.addBookToLibrary(libraryId, book1);
+            bookService.addBookToLibrary(libraryId, book2);
 
-        System.out.println("Livres de la bibliothèque :");
+            System.out.println("Livres de la bibliothèque :");
 
-        bookService.getBooksByLibrary(libraryId).forEach(book ->
-                System.out.println("ID: " + book.getId() + " | Title: " + book.getTitle())
-        );
+            bookService.getBooksByLibrary(libraryId)
+                    .forEach(book -> System.out.println(
+                            "ID: " + book.getId() +
+                                    " | Title: " + book.getTitle()
+                    ));
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

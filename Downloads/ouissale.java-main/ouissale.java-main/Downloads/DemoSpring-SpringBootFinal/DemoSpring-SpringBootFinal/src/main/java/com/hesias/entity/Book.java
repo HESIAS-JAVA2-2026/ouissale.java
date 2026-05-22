@@ -10,19 +10,12 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String title;
+
     @ManyToOne
     @JoinColumn(name = "library_id")
     private Library library;
-
-    public Library getLibrary() {
-        return library;
-    }
-
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
-    @Column(name = "title")
-    private String title;
 
     public Book() {}
 
@@ -30,20 +23,44 @@ public class Book {
         this.title = title;
     }
 
+    // GETTERS / SETTERS
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
+    // IMPORTANT pour JPA (évite bugs dans les collections)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return id != null && id.equals(book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 
     @Override
@@ -51,4 +68,3 @@ public class Book {
         return "Book{id=" + id + ", title='" + title + "'}";
     }
 }
-
