@@ -1,7 +1,6 @@
 package com.hesias;
 
 import com.hesias.entity.Book;
-import com.hesias.service.BookService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

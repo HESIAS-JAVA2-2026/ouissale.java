@@ -1,4 +1,4 @@
-package com.hesias.service;
+package com.hesias;
 
 import com.hesias.entity.Library;
 import com.hesias.repository.LibraryRepository;

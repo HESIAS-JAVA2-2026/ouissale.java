@@ -1,7 +1,7 @@
 package com.hesias.rest;
 
 import com.hesias.entity.Book;
-import com.hesias.service.BookService;
+import com.hesias.BookService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

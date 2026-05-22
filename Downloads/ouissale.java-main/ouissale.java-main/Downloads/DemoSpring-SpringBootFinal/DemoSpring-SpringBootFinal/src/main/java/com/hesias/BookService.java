@@ -1,4 +1,4 @@
-package com.hesias.service;
+package com.hesias;
 
 import com.hesias.entity.Book;
 import com.hesias.entity.Library;

@@ -49,7 +49,6 @@ public class Book {
         this.library = library;
     }
 
-    // IMPORTANT pour JPA (évite bugs dans les collections)
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
